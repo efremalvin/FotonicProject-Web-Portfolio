@@ -8,7 +8,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-white/5 bg-ink/80 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 sm:h-[72px] max-w-6xl items-center justify-between px-4 sm:px-8">
         {/* Brand / Logo */}
-        <a href="#top" className="group flex items-center gap-2.5 sm:gap-3 transition-opacity hover:opacity-90 shrink-0" aria-label="Fotonic — kembali ke atas">
+        <a href="#top" className="group flex items-center gap-2 sm:gap-3 transition-opacity hover:opacity-90 shrink-0" aria-label="Fotonic — kembali ke atas">
           <div className="relative size-8 sm:size-9 overflow-hidden rounded-full border border-gold/40 bg-gold/10 p-1 sm:p-1.5 transition duration-500 group-hover:rotate-90 group-hover:bg-gold/20 shrink-0">
             <Image
               src="/images/aperture-white.png"
@@ -19,12 +19,14 @@ export default function Navbar() {
               className="size-full object-contain"
             />
           </div>
-          <span className="leading-none">
-            <span className="block font-display text-lg sm:text-xl tracking-wide text-white">{siteConfig.name}</span>
-            <span className="mt-0.5 block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-zinc-400">
+          <div className="flex flex-col justify-center">
+            <span className="block font-display text-base sm:text-xl font-bold leading-tight tracking-wide text-white">
+              {siteConfig.name}
+            </span>
+            <span className="block text-[8px] sm:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.25em] text-zinc-400 leading-tight mt-0.5">
               {siteConfig.subtitle}
             </span>
-          </span>
+          </div>
         </a>
 
         {/* Quick Nav Anchor (Desktop) */}
@@ -37,27 +39,26 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Action Buttons - Simpel & Minimalis */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <a
             href={siteConfig.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Instagram ${siteConfig.instagram.handle}`}
-            className="flex size-9 sm:size-auto sm:h-10 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] sm:px-4 text-xs font-medium text-zinc-300 transition hover:border-gold/50 hover:text-white"
+            className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-zinc-300 transition hover:border-gold/50 hover:bg-gold/10 hover:text-white"
           >
-            <InstagramIcon size={16} />
-            <span className="hidden sm:inline">{siteConfig.instagram.handle}</span>
+            <InstagramIcon size={16} className="text-zinc-300 hover:text-white" />
           </a>
           <a
             href={getGeneralChatLink()}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Chat admin via WhatsApp"
-            className="btn-wa h-9 sm:h-10 px-3.5 sm:px-5 text-xs sm:text-sm font-semibold whitespace-nowrap"
+            aria-label="Reservasi WhatsApp Fotonic"
+            title="Reservasi via WhatsApp"
+            className="flex size-9 items-center justify-center rounded-full bg-wa text-black shadow-lg shadow-wa/20 transition hover:brightness-110 active:scale-95"
           >
-            <WhatsAppIcon size={16} className="shrink-0" />
-            <span>Reservasi Sekarang!</span>
+            <WhatsAppIcon size={17} />
           </a>
         </div>
       </nav>

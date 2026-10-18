@@ -287,23 +287,33 @@ export default function CatalogSection() {
               {/* Modal Body */}
               <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-7 space-y-5">
                 {selectedProject.serviceType === "video" ? (
-                  /* Video Player Preview yang Luas & Full */
-                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10">
-                    {getDriveVideoEmbedUrl(selectedProject.driveUrl) ? (
-                      <iframe
-                        src={getDriveVideoEmbedUrl(selectedProject.driveUrl)!}
-                        title={selectedProject.eventName}
-                        allow="autoplay"
-                        className="size-full border-0"
-                      />
-                    ) : (
-                      <div className="flex size-full flex-col items-center justify-center gap-3 p-6 text-center">
-                        <Film className="size-10 text-gold" />
-                        <p className="text-sm text-zinc-300">
-                          Video preview sinematik siap diputar dalam resolusi tinggi.
-                        </p>
-                      </div>
-                    )}
+                  /* Video Player Preview Adaptif (Portrait Reels 9:16 atau Landscape 16:9) */
+                  <div className="flex w-full justify-center">
+                    <div
+                      className={cn(
+                        "relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 w-full transition-all duration-300",
+                        selectedProject.videoAspectRatio === "portrait"
+                          ? "max-w-[380px] aspect-[9/16] h-[72vh] sm:h-[75vh]"
+                          : "aspect-video max-w-4xl"
+                      )}
+                    >
+                      {getDriveVideoEmbedUrl(selectedProject.driveUrl) ? (
+                        <iframe
+                          src={getDriveVideoEmbedUrl(selectedProject.driveUrl)!}
+                          title={selectedProject.eventName}
+                          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                          allowFullScreen
+                          className="size-full border-0"
+                        />
+                      ) : (
+                        <div className="flex size-full flex-col items-center justify-center gap-3 p-6 text-center">
+                          <Film className="size-10 text-gold" />
+                          <p className="text-sm text-zinc-300">
+                            Video preview sinematik siap diputar dalam resolusi tinggi.
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ) : (
                   /* Photo Gallery Showcase Luas & Adaptive (Portrait / Landscape) */

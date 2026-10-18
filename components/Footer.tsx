@@ -33,16 +33,16 @@ export default function Footer() {
               href={getGeneralChatLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 w-full sm:w-[280px] items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 text-xs sm:text-sm font-medium text-zinc-200 whitespace-nowrap transition hover:border-wa/60 hover:bg-wa/10 hover:text-white"
+              className="flex h-11 w-full sm:w-[260px] items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 text-xs sm:text-sm font-medium text-zinc-200 whitespace-nowrap transition hover:border-wa/60 hover:bg-wa/10 hover:text-white"
             >
               <WhatsAppIcon size={18} className="text-wa shrink-0" />
-              <span className="whitespace-nowrap">Reservasi Sekarang! (WA Me)</span>
+              <span className="whitespace-nowrap">Reservasi Sekarang!</span>
             </a>
             <a
               href={siteConfig.instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 w-full sm:w-[280px] items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 text-xs sm:text-sm font-medium text-zinc-200 whitespace-nowrap transition hover:border-gold/60 hover:bg-gold/10 hover:text-white"
+              className="flex h-11 w-full sm:w-[260px] items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 text-xs sm:text-sm font-medium text-zinc-200 whitespace-nowrap transition hover:border-gold/60 hover:bg-gold/10 hover:text-white"
             >
               <InstagramIcon size={18} className="text-gold shrink-0" />
               <span className="whitespace-nowrap">{siteConfig.instagram.handle}</span>

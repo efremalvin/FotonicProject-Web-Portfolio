@@ -44,11 +44,11 @@ export async function GET() {
         // Parsing nama folder: "namaclient, tanggalshoot, jenisjasa, paketyangdipesan"
         const parsed = parseSubfolderName(folder.name);
 
-        // Ambil file di dalam subfolder ini
-        const filesUrl = `https://www.googleapis.com/drive/v3/files?q='${folder.id}'+in+parents+and+trashed=false&key=${apiKey}&fields=files(id,name,mimeType)&orderBy=createdTime`;
+        // Ambil file di dalam subfolder ini (hingga 100 foto/video) dengan metadata video
+        const filesUrl = `https://www.googleapis.com/drive/v3/files?q='${folder.id}'+in+parents+and+trashed=false&key=${apiKey}&fields=files(id,name,mimeType,videoMediaMetadata)&pageSize=100&orderBy=name`;
         const filesRes = await fetch(filesUrl, { next: { revalidate: 60 } });
         const filesData = await filesRes.json();
-        const files: DriveFile[] = filesData.files || [];
+        const files: (DriveFile & { videoMediaMetadata?: { width?: number; height?: number } })[] = filesData.files || [];
 
         // Filter foto dan video
         const imageFiles = files.filter((f) => f.mimeType.startsWith("image/"));
@@ -56,10 +56,12 @@ export async function GET() {
 
         const isVideo = parsed.serviceType === "video" || (imageFiles.length === 0 && videoFiles.length > 0);
 
-        // Thumbnail cover (ambil foto pertama atau thumbnail drive)
+        // Thumbnail cover (ambil foto pertama atau thumbnail video/drive)
         const firstPhotoId = imageFiles[0]?.id;
         const thumbnail = firstPhotoId
           ? `https://lh3.googleusercontent.com/d/${firstPhotoId}=w900`
+          : videoFiles[0]?.id
+          ? `https://lh3.googleusercontent.com/d/${videoFiles[0].id}=w900`
           : "/images/hero-bg.jpg";
 
         const galleryPhotos: CatalogPhoto[] = imageFiles.map((img, i) => ({
@@ -68,10 +70,19 @@ export async function GET() {
           caption: `${parsed.clientName || folder.name} — Foto ${i + 1}`,
         }));
 
-        const firstVideoId = videoFiles[0]?.id;
-        const driveUrl = firstVideoId
-          ? `https://drive.google.com/file/d/${firstVideoId}/view`
+        const firstVideo = videoFiles[0];
+        const driveUrl = firstVideo?.id
+          ? `https://drive.google.com/file/d/${firstVideo.id}/view`
           : `https://drive.google.com/drive/folders/${folder.id}`;
+
+        let videoAspectRatio: "portrait" | "landscape" | undefined = undefined;
+        if (firstVideo?.videoMediaMetadata) {
+          const { width = 1920, height = 1080 } = firstVideo.videoMediaMetadata;
+          videoAspectRatio = height > width ? "portrait" : "landscape";
+        } else if (isVideo) {
+          // Default untuk reels / shorts jika tidak terdeteksi
+          videoAspectRatio = "portrait";
+        }
 
         return {
           id: folder.id || `proj-${idx}`,
@@ -83,6 +94,7 @@ export async function GET() {
           packageName: parsed.packageName || "Paket Dokumentasi",
           driveUrl,
           thumbnail,
+          videoAspectRatio,
           description: `Dokumentasi ${parsed.packageName || "foto & video"} untuk ${parsed.clientName || folder.name}. Dilindungi hak cipta Fotonic Project.`,
           galleryPhotos: galleryPhotos.length > 0 ? galleryPhotos : undefined,
         };

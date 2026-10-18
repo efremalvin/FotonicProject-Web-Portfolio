@@ -29,7 +29,9 @@ export default function Notes() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <div className="text-center">
           <span className="eyebrow">Info Penting</span>
-          <h2 className="mt-3 font-display text-3xl text-white sm:text-4xl">Catatan & Ketentuan</h2>
+          <h2 className="mt-3 font-display text-3xl text-white sm:text-4xl">
+            Catatan Penting
+          </h2>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {NOTES.map(({ icon: Icon, title, body }) => (
