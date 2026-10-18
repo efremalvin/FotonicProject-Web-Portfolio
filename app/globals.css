@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+@theme {
+  --color-ink: #09090b;
+  --color-ink-soft: #111114;
+  --color-ink-card: #16161a;
+  --color-gold: #d6a85a;
+  --color-gold-light: #f0cf8e;
+  --color-wa: #25d366;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-ink);
+  color: #ededed;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: #2a2a30; border-radius: 9999px; border: 2px solid var(--color-ink); }
+
+@layer components {
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--color-gold-light), var(--color-gold) 50%, #b9853a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-zinc-500 outline-none transition focus:border-gold/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-gold/20;
+  }
+
+  .btn-wa {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-wa px-5 py-3 text-sm font-semibold text-black transition hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wa;
+  }
+
+  /* Proteksi Media: Disable drag & save image bypass */
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    user-select: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
