@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -15,6 +15,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldAlert,
+  RefreshCw,
 } from "lucide-react";
 import {
   CATALOG_PROJECTS,
@@ -29,13 +30,35 @@ type FilterType = "all" | ServiceType;
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState<FilterType>("all");
+  const [projects, setProjects] = useState<CatalogProject[]>(CATALOG_PROJECTS);
   const [selectedProject, setSelectedProject] = useState<CatalogProject | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadCatalog() {
+      try {
+        const res = await fetch("/api/catalog");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (isMounted && data.projects && data.projects.length > 0) {
+          setProjects(data.projects);
+        }
+      } catch (e) {
+        // Fallback to static catalog if network/API fails
+      }
+    }
+    loadCatalog();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filteredProjects = useMemo(() => {
-    if (filter === "all") return CATALOG_PROJECTS;
-    return CATALOG_PROJECTS.filter((p) => p.serviceType === filter);
-  }, [filter]);
+    if (filter === "all") return projects;
+    return projects.filter((p) => p.serviceType === filter);
+  }, [filter, projects]);
 
   function handleOpenProject(project: CatalogProject) {
     setSelectedProject(project);

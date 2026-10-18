@@ -94,55 +94,52 @@ export default function HomePage() {
               </div>
 
               {/* Kolom Kanan: 2 Foto Gear (Kamera Body & Lensa 35mm f/1.7) Terproteksi */}
-              <div className="relative mt-4 lg:mt-0 lg:col-span-5">
-                <div className="relative mx-auto max-w-[420px] lg:max-w-none">
+              <div className="relative mt-8 lg:mt-0 lg:col-span-5">
+                <div className="relative mx-auto max-w-[440px] lg:max-w-none">
                   {/* Efek Ambient Glow Belakang Gambar */}
-                  <div className="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-tr from-gold/15 via-transparent to-transparent opacity-60 blur-2xl" />
+                  <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-tr from-gold/15 via-transparent to-transparent opacity-60 blur-2xl" />
 
                   {/* Foto Utama: Kamera Nikon Z */}
                   <div className="relative select-none overflow-hidden rounded-3xl border border-white/10 bg-black/60 shadow-2xl shadow-black">
-                    <Image
-                      src="/images/camera-hero.jpg"
-                      alt="Nikon Z Camera Gear"
-                      width={1024}
-                      height={768}
-                      priority
-                      draggable={false}
-                      className="pointer-events-none select-none h-auto w-full object-cover transition duration-700 ease-out hover:scale-105"
-                    />
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src="/images/camera-hero.jpg"
+                        alt="Nikon Z Camera Gear"
+                        fill
+                        priority
+                        draggable={false}
+                        className="pointer-events-none select-none object-cover transition duration-700 ease-out hover:scale-105"
+                      />
+                    </div>
 
                     {/* Gradient Overlay Menyatu Gelap */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80" />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent hidden lg:block" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
 
-                    {/* Chip Informasi Body Kamera */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl border border-white/10 bg-black/75 px-3 py-2 backdrop-blur-md">
-                      <div>
-                        <p className="text-xs font-bold text-white">Nikon Z Mirrorless</p>
-                        <p className="text-[10px] text-zinc-400">High-resolution cinematic sensor</p>
-                      </div>
-                      <span className="flex size-6 items-center justify-center rounded-full bg-gold/15 text-gold">
-                        <Camera className="size-3.5" />
-                      </span>
+                    {/* Chip Informasi Body Kamera - Berada di atas atau tertata rapi */}
+                    <div className="absolute top-3 right-3 flex items-center gap-2 rounded-full border border-white/15 bg-black/75 px-3 py-1.5 backdrop-blur-md">
+                      <Camera className="size-3.5 text-gold" />
+                      <span className="text-xs font-semibold text-white">Nikon Z Mirrorless</span>
                     </div>
                   </div>
 
-                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 (Floating Card Tumpang Tindih Aman, Tidak Lepas ke Kiri Layar HP) */}
-                  <div className="absolute -bottom-6 left-3 sm:-bottom-8 sm:-left-4 z-20 w-40 sm:w-48 select-none overflow-hidden rounded-2xl border border-white/15 bg-black/90 p-1.5 shadow-2xl shadow-black backdrop-blur-md">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
+                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 - Floating Card Proporsional & Elegan di Pojok Bawah */}
+                  <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/15 bg-black/80 p-2.5 shadow-xl backdrop-blur-md sm:absolute sm:-bottom-6 sm:right-6 sm:mt-0 sm:w-64 sm:p-2">
+                    <div className="relative aspect-[4/3] h-16 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10">
                       <Image
                         src="/images/lens-hero.jpg"
                         alt="35mm f/1.7 STM Prime Lens"
                         fill
                         draggable={false}
-                        sizes="200px"
+                        sizes="100px"
                         className="pointer-events-none select-none object-cover"
                       />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-white">35mm f/1.7 Prime</span>
-                        <Aperture className="size-3 text-gold" />
+                    </div>
+                    <div className="flex-1 pr-2">
+                      <div className="flex items-center gap-1.5">
+                        <Aperture className="size-3.5 text-gold" />
+                        <span className="text-xs font-bold text-white">35mm f/1.7</span>
                       </div>
+                      <p className="text-[11px] text-zinc-400">Cinematic Bokeh Prime</p>
                     </div>
                   </div>
 
