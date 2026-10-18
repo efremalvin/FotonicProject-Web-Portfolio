@@ -60,6 +60,12 @@ export function getDriveVideoEmbedUrl(idOrUrl: string): string | null {
   return `https://drive.google.com/file/d/${id}/preview`;
 }
 
+export function getDriveVideoStreamUrl(idOrUrl: string): string | null {
+  const id = extractDriveId(idOrUrl);
+  if (!id) return null;
+  return `/api/video-stream?fileId=${id}`;
+}
+
 export function getDriveFolderUrl(idOrUrl: string): string | null {
   const id = extractDriveId(idOrUrl);
   if (!id) return null;
