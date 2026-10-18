@@ -6,9 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CalendarDays,
   Camera,
-  ExternalLink,
   Film,
-  FolderOpen,
   Play,
   User,
   X,
@@ -214,6 +212,9 @@ export default function CatalogSection() {
       {/* ========================================================= */}
       {/* INTERACTIVE CATALOG MODAL (DETAIL KLIEN & GALERI FOTO TERPROTEKSI) */}
       {/* ========================================================= */}
+      {/* ========================================================= */}
+      {/* INTERACTIVE CATALOG MODAL (DETAIL KLIEN & GALERI FOTO TERPROTEKSI) */}
+      {/* ========================================================= */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -221,26 +222,31 @@ export default function CatalogSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-3 sm:p-6 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-2 sm:p-4 md:p-6 backdrop-blur-xl"
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              initial={{ scale: 0.96, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              exit={{ scale: 0.96, opacity: 0, y: 15 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/15 bg-ink-card shadow-2xl"
+              className="relative flex max-h-[96vh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-white/15 bg-ink shadow-2xl"
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-                <div>
-                  <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5 sm:px-7 sm:py-4 bg-ink-card/60 backdrop-blur-md">
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-bold uppercase tracking-widest text-gold">
                       {selectedProject.clientName}
                     </span>
-                    <span className="text-zinc-500">·</span>
+                    {selectedProject.packageName && (
+                      <span className="rounded-full bg-gold/15 px-2.5 py-0.5 text-[10px] font-semibold text-gold border border-gold/30">
+                        {selectedProject.packageName}
+                      </span>
+                    )}
+                    <span className="text-zinc-600">·</span>
                     <span className="text-xs text-zinc-400">{selectedProject.date}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white sm:text-xl">
+                  <h3 className="text-base font-bold text-white sm:text-xl">
                     {selectedProject.eventName}
                   </h3>
                 </div>
@@ -248,17 +254,18 @@ export default function CatalogSection() {
                 <button
                   type="button"
                   onClick={handleCloseModal}
-                  className="rounded-full p-2 text-zinc-400 hover:bg-white/10 hover:text-white"
+                  aria-label="Tutup pratinjau"
+                  className="rounded-full border border-white/10 bg-white/5 p-2 text-zinc-400 transition hover:bg-white/15 hover:text-white"
                 >
                   <X className="size-5" />
                 </button>
               </div>
 
-              {/* Modal Content */}
-              <div className="flex-1 overflow-y-auto p-5 sm:p-6">
+              {/* Modal Body */}
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-7 space-y-5">
                 {selectedProject.serviceType === "video" ? (
-                  /* Video Player Preview */
-                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-inner">
+                  /* Video Player Preview yang Luas & Full */
+                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10">
                     {getDriveVideoEmbedUrl(selectedProject.driveUrl) ? (
                       <iframe
                         src={getDriveVideoEmbedUrl(selectedProject.driveUrl)!}
@@ -267,28 +274,21 @@ export default function CatalogSection() {
                         className="size-full border-0"
                       />
                     ) : (
-                      <div className="flex size-full flex-col items-center justify-center gap-3 p-4 text-center">
-                        <p className="text-sm text-zinc-400">
-                          Video preview tersimpan di Google Drive:
+                      <div className="flex size-full flex-col items-center justify-center gap-3 p-6 text-center">
+                        <Film className="size-10 text-gold" />
+                        <p className="text-sm text-zinc-300">
+                          Video preview sinematik siap diputar dalam resolusi tinggi.
                         </p>
-                        <a
-                          href={selectedProject.driveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-wa py-2 text-xs"
-                        >
-                          Buka Video di Google Drive
-                        </a>
                       </div>
                     )}
                   </div>
                 ) : (
-                  /* Photo Gallery Showcase Terproteksi */
-                  <div>
-                    {/* Foto Utama Aktif */}
+                  /* Photo Gallery Showcase Luas & Adaptive (Portrait / Landscape) */
+                  <div className="space-y-4">
+                    {/* Viewport Foto Utama */}
                     {selectedProject.galleryPhotos && selectedProject.galleryPhotos.length > 0 && (
                       <div 
-                        className="relative aspect-[16/10] w-full select-none overflow-hidden rounded-2xl bg-black"
+                        className="relative flex h-[50vh] sm:h-[62vh] lg:h-[68vh] w-full select-none items-center justify-center overflow-hidden rounded-2xl bg-black/90 border border-white/10"
                         onContextMenu={(e) => e.preventDefault()}
                       >
                         <Image
@@ -297,8 +297,8 @@ export default function CatalogSection() {
                           fill
                           draggable={false}
                           priority
-                          sizes="(max-width: 1024px) 100vw, 850px"
-                          className="pointer-events-none select-none object-contain"
+                          sizes="(max-width: 1280px) 100vw, 1200px"
+                          className="pointer-events-none select-none object-contain transition-opacity duration-300"
                         />
 
                         {/* Navigasi Kiri / Kanan Foto */}
@@ -311,9 +311,10 @@ export default function CatalogSection() {
                                   prev === 0 ? selectedProject.galleryPhotos!.length - 1 : prev - 1
                                 )
                               }
-                              className="absolute left-3 top-1/2 -translate-y-1/2 flex size-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-gold hover:text-ink"
+                              aria-label="Foto sebelumnya"
+                              className="absolute left-3 top-1/2 -translate-y-1/2 flex size-10 sm:size-12 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur-md transition hover:bg-gold hover:text-ink hover:scale-105"
                             >
-                              <ChevronLeft className="size-6" />
+                              <ChevronLeft className="size-6 sm:size-7" />
                             </button>
                             <button
                               type="button"
@@ -322,21 +323,22 @@ export default function CatalogSection() {
                                   prev === selectedProject.galleryPhotos!.length - 1 ? 0 : prev + 1
                                 )
                               }
-                              className="absolute right-3 top-1/2 -translate-y-1/2 flex size-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-gold hover:text-ink"
+                              aria-label="Foto selanjutnya"
+                              className="absolute right-3 top-1/2 -translate-y-1/2 flex size-10 sm:size-12 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur-md transition hover:bg-gold hover:text-ink hover:scale-105"
                             >
-                              <ChevronRight className="size-6" />
+                              <ChevronRight className="size-6 sm:size-7" />
                             </button>
                           </>
                         )}
 
                         {/* Caption Bar & Proteksi Badge */}
-                        <div className="pointer-events-none absolute bottom-0 inset-x-0 flex items-center justify-between bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-xs">
-                          <span className="font-medium text-white">
+                        <div className="pointer-events-none absolute bottom-0 inset-x-0 flex items-center justify-between bg-gradient-to-t from-black/90 via-black/50 to-transparent px-5 py-3.5 text-xs">
+                          <span className="font-medium text-white sm:text-sm">
                             {selectedProject.galleryPhotos[activePhotoIndex].caption || `Foto ${activePhotoIndex + 1} dari ${selectedProject.galleryPhotos.length}`}
                           </span>
-                          <span className="flex items-center gap-1 text-[11px] text-zinc-400">
-                            <ShieldAlert className="size-3 text-gold" />
-                            <span>Protected Preview</span>
+                          <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 text-[11px] font-medium text-zinc-300 border border-white/10 backdrop-blur-md">
+                            <ShieldAlert className="size-3.5 text-gold" />
+                            <span>Protected View</span>
                           </span>
                         </div>
                       </div>
@@ -344,17 +346,17 @@ export default function CatalogSection() {
 
                     {/* Thumbnail Carousel Bawah */}
                     {selectedProject.galleryPhotos && selectedProject.galleryPhotos.length > 1 && (
-                      <div className="mt-4 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none]">
+                      <div className="flex gap-2.5 overflow-x-auto py-1 [scrollbar-width:none]">
                         {selectedProject.galleryPhotos.map((photo, i) => (
                           <button
                             key={photo.id}
                             type="button"
                             onClick={() => setActivePhotoIndex(i)}
                             className={cn(
-                              "relative aspect-[4/3] w-20 shrink-0 select-none overflow-hidden rounded-xl border-2 transition",
+                              "relative aspect-[4/3] w-20 sm:w-24 shrink-0 select-none overflow-hidden rounded-xl border-2 transition",
                               activePhotoIndex === i
-                                ? "border-gold shadow-md shadow-gold/30"
-                                : "border-white/10 opacity-60 hover:opacity-100"
+                                ? "border-gold shadow-lg shadow-gold/30 scale-105"
+                                : "border-white/10 opacity-50 hover:opacity-100"
                             )}
                             onContextMenu={(e) => e.preventDefault()}
                           >
@@ -372,26 +374,32 @@ export default function CatalogSection() {
                   </div>
                 )}
 
-                {/* Info Deskripsi & Keamanan */}
-                <div className="mt-6 flex flex-col justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-4 sm:flex-row sm:items-center">
-                  <div>
-                    <p className="text-xs text-zinc-400">{selectedProject.description}</p>
-                    <p className="mt-1 flex items-center gap-1.5 text-[11px] text-zinc-500">
-                      <ShieldAlert className="size-3 text-gold" />
-                      <span>Hak cipta &amp; dokumentasi dilindungi oleh Fotonic Project. Mode pratinjau aman tanpa unduhan.</span>
-                    </p>
+                {/* Info Pendukung Deskripsi & Keamanan (Tanpa tombol folder Google Drive) */}
+                <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold">
+                      <Sparkles className="size-3.5" />
+                      <span>Detail Sesi Dokumentasi</span>
+                    </div>
+                    {selectedProject.highlights && selectedProject.highlights.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedProject.highlights.map((h, i) => (
+                          <span key={i} className="rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[10px] text-zinc-300">
+                            {h}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  <a
-                    href={selectedProject.driveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex shrink-0 items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-xs font-semibold text-gold transition hover:bg-gold hover:text-ink"
-                  >
-                    <FolderOpen className="size-3.5" />
-                    <span>Lihat di Drive Folder Klien</span>
-                    <ExternalLink className="size-3" />
-                  </a>
+                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300">
+                    {selectedProject.description}
+                  </p>
+
+                  <div className="flex items-center gap-2 border-t border-white/5 pt-3 text-[11px] text-zinc-400">
+                    <ShieldAlert className="size-3.5 shrink-0 text-gold" />
+                    <span>Mode pratinjau aman terproteksi oleh Fotonic Project. Klik kanan, drag-and-drop, dan unduhan langsung dinonaktifkan demi privasi karya klien.</span>
+                  </div>
                 </div>
               </div>
             </motion.div>

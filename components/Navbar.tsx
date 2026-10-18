@@ -55,7 +55,7 @@ export default function Navbar() {
             className="btn-wa px-3.5 py-2 text-xs sm:px-4 sm:text-sm"
           >
             <WhatsAppIcon size={16} />
-            <span className="hidden sm:inline">Chat Admin</span>
+            <span>Reservasi Sekarang!</span>
           </a>
         </div>
       </nav>

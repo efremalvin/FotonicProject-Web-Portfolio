@@ -31,7 +31,7 @@ export default function Footer() {
               className="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3 text-sm text-zinc-300 transition hover:border-wa/50 hover:bg-wa/5 hover:text-white"
             >
               <WhatsAppIcon size={18} className="text-wa" />
-              <span>{displayPhone()}</span>
+              <span>Reservasi Sekarang! (WA Me)</span>
             </a>
             <a
               href={siteConfig.instagram.url}

@@ -11,6 +11,7 @@ export interface CatalogPhoto {
   id: string;
   url: string;
   caption?: string;
+  orientation?: "landscape" | "portrait" | "square";
 }
 
 export interface CatalogProject {
@@ -20,6 +21,8 @@ export interface CatalogProject {
   date: string; // misal "12 Oktober 2026"
   serviceType: ServiceType; // "foto" | "video"
   category: CategoryType;
+  /** Paket yang dipesan (misal Single, Group, Sidang, Custom) */
+  packageName?: string;
   /** Link subfolder Google Drive proyek klien ini */
   driveUrl: string;
   /** Thumbnail utama representasi karya */
@@ -28,6 +31,35 @@ export interface CatalogProject {
   highlights?: string[];
   /** Kumpulan foto-foto dari subfolder client yang sama untuk dilihat di modal */
   galleryPhotos?: CatalogPhoto[];
+}
+
+/**
+ * Helper untuk parsing otomatis nama subfolder Google Drive dengan format:
+ * "namaclient, tanggalshoot, jenisjasa, paketyangdipesan"
+ * Contoh: "Arya Saputra, 12 Okt 2026, foto, Paket Sidang"
+ */
+export function parseSubfolderName(folderName: string): Partial<CatalogProject> {
+  const parts = folderName.split(",").map((s) => s.trim());
+  if (parts.length < 4) return {};
+
+  const [clientName, date, rawService, packageName] = parts;
+  const serviceType: ServiceType = rawService.toLowerCase().includes("video") ? "video" : "foto";
+  
+  let category: CategoryType = "sidang";
+  const packLower = packageName.toLowerCase();
+  if (packLower.includes("single")) category = "single";
+  else if (packLower.includes("group")) category = "group";
+  else if (packLower.includes("sidang")) category = "sidang";
+  else if (packLower.includes("wedding")) category = "wedding";
+
+  return {
+    clientName,
+    date,
+    serviceType,
+    packageName,
+    eventName: `${packageName} — ${clientName}`,
+    category,
+  };
 }
 
 export const CATALOG_PROJECTS: CatalogProject[] = [

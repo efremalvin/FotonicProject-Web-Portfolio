@@ -56,7 +56,7 @@ export default function HomePage() {
                 </h1>
 
                 <p className="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
-                  Studio foto &amp; video profesional untuk momen personal, wisuda, perayaan sidang, hingga event. 
+                  Layanan fotografi &amp; videografi profesional untuk outdoor &amp; indoor shoot — dari momen wisuda, perayaan sidang, portrait personal, hingga event kebersamaan. 
                   Dokumentasikan momen terbaik Anda dengan gear sinematik dan promo free video reels.
                 </p>
 
@@ -94,7 +94,7 @@ export default function HomePage() {
               </div>
 
               {/* Kolom Kanan: 2 Foto Gear (Kamera Body & Lensa 35mm f/1.7) Terproteksi */}
-              <div className="relative lg:col-span-5">
+              <div className="relative mt-4 lg:mt-0 lg:col-span-5">
                 <div className="relative mx-auto max-w-[420px] lg:max-w-none">
                   {/* Efek Ambient Glow Belakang Gambar */}
                   <div className="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-tr from-gold/15 via-transparent to-transparent opacity-60 blur-2xl" />
@@ -127,8 +127,8 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 (Floating Card Tumpang Tindih Mewah) */}
-                  <div className="absolute -bottom-8 -left-6 z-20 w-44 sm:w-52 select-none overflow-hidden rounded-2xl border border-white/15 bg-black/85 p-1.5 shadow-2xl shadow-black backdrop-blur-md sm:-bottom-10 sm:-left-8">
+                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 (Floating Card Tumpang Tindih Aman, Tidak Lepas ke Kiri Layar HP) */}
+                  <div className="absolute -bottom-6 left-3 sm:-bottom-8 sm:-left-4 z-20 w-40 sm:w-48 select-none overflow-hidden rounded-2xl border border-white/15 bg-black/90 p-1.5 shadow-2xl shadow-black backdrop-blur-md">
                     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
                       <Image
                         src="/images/lens-hero.jpg"
