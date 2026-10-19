@@ -129,24 +129,24 @@ export default function CatalogSection() {
         </div>
 
         {/* Grid Showcase Subfolder Klien (DAPAT DIKLIK UNTUK MELIHAT DETAIL) */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => {
-              const isVideo = project.serviceType === "video";
-              const imageSrc = resolveImageSrc(project.thumbnail);
-              const photoCount = project.galleryPhotos?.length || 1;
+        <motion.div
+          key={filter}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
+          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {filteredProjects.map((project) => {
+            const isVideo = project.serviceType === "video";
+            const imageSrc = resolveImageSrc(project.thumbnail);
+            const photoCount = project.galleryPhotos?.length || 1;
 
-              return (
-                <motion.article
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: idx * 0.06 }}
-                  onClick={() => handleOpenProject(project)}
-                  className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-card transition-all duration-300 hover:border-gold/50 hover:shadow-xl hover:shadow-gold/5"
-                >
+            return (
+              <article
+                key={project.id}
+                onClick={() => handleOpenProject(project)}
+                className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-card transition-all duration-300 hover:border-gold/50 hover:shadow-xl hover:shadow-gold/5 hover:-translate-y-1"
+              >
                   {/* Thumbnail Cover dengan Proteksi Anti-Download */}
                   <div 
                     className="relative aspect-[4/3] w-full select-none overflow-hidden bg-zinc-900"
@@ -225,11 +225,10 @@ export default function CatalogSection() {
                       </button>
                     </div>
                   </div>
-                </motion.article>
+                </article>
               );
             })}
-          </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
 
       {/* ========================================================= */}
