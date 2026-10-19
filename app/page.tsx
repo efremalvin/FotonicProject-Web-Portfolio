@@ -8,6 +8,8 @@ import Footer from "@/components/Footer";
 import { BookingProvider } from "@/components/BookingModal";
 import { MAIN_PACKAGES, formatRupiah } from "@/data/pricelist";
 
+import MobileHeroBackground from "@/components/MobileHeroBackground";
+
 const lowestPrice = Math.min(...MAIN_PACKAGES.map((p) => p.startingPrice));
 
 export default function HomePage() {
@@ -16,17 +18,20 @@ export default function HomePage() {
       <Navbar />
       <main id="top">
         {/* ========================================================= */}
-        {/* HERO SECTION DENGAN 2 FOTO GEAR (BODY & LENSA 35MM) DI KANAN */}
+        {/* HERO SECTION */}
         {/* ========================================================= */}
         <section className="relative overflow-hidden border-b border-white/5 bg-ink py-16 sm:py-24 lg:py-28">
           {/* Subtle Ambient Gold Glow */}
           <div className="pointer-events-none absolute -left-20 top-1/4 h-[420px] w-[500px] rounded-full bg-gold/10 blur-[140px]" />
           <div className="pointer-events-none absolute right-0 top-10 h-[500px] w-[600px] rounded-full bg-zinc-800/30 blur-[160px]" />
 
+          {/* Background Khusus Tampilan HP: Bergantian Kamera & Lensa (20-30% opacity) */}
+          <MobileHeroBackground />
+
           <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
               
-              {/* Kolom Kiri: Teks & Logo Brand */}
+              {/* Kolom Kiri: Teks & Logo Brand (Pada HP teks & logo bergulir elegan di atas background) */}
               <div className="text-center lg:col-span-7 lg:text-left">
                 {/* Promo Badge Pill */}
                 <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-xs font-semibold text-gold shadow-sm backdrop-blur-md">
@@ -93,8 +98,8 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Kolom Kanan: 2 Foto Gear (Kamera Body & Lensa 35mm f/1.7) Terproteksi */}
-              <div className="relative mt-8 lg:mt-0 lg:col-span-5">
+              {/* Kolom Kanan: 2 Foto Gear (Kamera Body & Lensa 35mm f/1.7) - Tetap Eksklusif untuk Tampilan Laptop / Desktop (hidden di HP) */}
+              <div className="relative hidden lg:block lg:col-span-5">
                 <div className="relative mx-auto max-w-[440px] lg:max-w-none">
                   {/* Efek Ambient Glow Belakang Gambar */}
                   <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-tr from-gold/15 via-transparent to-transparent opacity-60 blur-2xl" />
@@ -115,31 +120,33 @@ export default function HomePage() {
                     {/* Gradient Overlay Menyatu Gelap */}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
 
-                    {/* Chip Informasi Body Kamera - Berada di atas atau tertata rapi */}
+                    {/* Chip Informasi Body Kamera */}
                     <div className="absolute top-3 right-3 flex items-center gap-2 rounded-full border border-white/15 bg-black/75 px-3 py-1.5 backdrop-blur-md">
                       <Camera className="size-3.5 text-gold" />
                       <span className="text-xs font-semibold text-white">Nikon Z Mirrorless</span>
                     </div>
                   </div>
 
-                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 - Floating Card Proporsional & Elegan di Pojok Bawah */}
-                  <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/15 bg-black/80 p-2.5 shadow-xl backdrop-blur-md sm:absolute sm:-bottom-6 sm:right-6 sm:mt-0 sm:w-64 sm:p-2">
-                    <div className="relative aspect-[4/3] h-16 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10">
-                      <Image
-                        src="/images/lens-hero.jpg"
-                        alt="35mm f/1.7 STM Prime Lens"
-                        fill
-                        draggable={false}
-                        sizes="100px"
-                        className="pointer-events-none select-none object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 pr-2">
-                      <div className="flex items-center gap-1.5">
-                        <Aperture className="size-3.5 text-gold" />
-                        <span className="text-xs font-bold text-white">35mm f/1.7</span>
+                  {/* Foto Kedua: Lensa Prime 35mm f/1.7 - Floating Card Proporsional */}
+                  <div className="absolute -bottom-6 right-6 w-64 select-none overflow-hidden rounded-2xl border border-white/15 bg-black/85 p-2 shadow-2xl shadow-black backdrop-blur-md">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="relative aspect-[4/3] h-16 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10">
+                        <Image
+                          src="/images/lens-hero.jpg"
+                          alt="35mm f/1.7 STM Prime Lens"
+                          fill
+                          draggable={false}
+                          sizes="100px"
+                          className="pointer-events-none select-none object-cover"
+                        />
                       </div>
-                      <p className="text-[11px] text-zinc-400">Cinematic Bokeh Prime</p>
+                      <div className="flex-1 pr-2">
+                        <div className="flex items-center gap-1.5">
+                          <Aperture className="size-3.5 text-gold" />
+                          <span className="text-xs font-bold text-white">35mm f/1.7</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-400">Cinematic Bokeh Prime</p>
+                      </div>
                     </div>
                   </div>
 

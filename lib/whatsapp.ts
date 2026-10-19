@@ -57,7 +57,7 @@ export function buildBookingMessage(item: BookingItem, details: BookingDetails =
   if (detailLines.length > 0) {
     lines.push("", "Detail pemesanan:", ...detailLines);
   }
-  lines.push("", "Terima kasih 🙏");
+  lines.push("", "Terima kasih.");
 
   return lines.join("\n");
 }
@@ -68,6 +68,13 @@ export function buildWhatsAppLink(message: string, phone: string = siteConfig.wh
   return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
 }
 
+/** Link chat langsung menyatakan tertarik dengan paket tertentu */
+export function getPackageInterestLink(packageName: string, startingPrice?: number): string {
+  const priceText = startingPrice ? ` (Mulai dari ${formatRupiah(startingPrice)})` : "";
+  const msg = `Halo Admin Fotonic Project! Saya tertarik dengan ${packageName}${priceText}. Boleh minta info detail dan ketersediaan jadwalnya? Terima kasih.`;
+  return buildWhatsAppLink(msg);
+}
+
 /** Shortcut: langsung menghasilkan link booking WhatsApp untuk sebuah paket/add-on. */
 export function getBookingLink(item: BookingItem, details?: BookingDetails): string {
   return buildWhatsAppLink(buildBookingMessage(item, details));
@@ -76,6 +83,6 @@ export function getBookingLink(item: BookingItem, details?: BookingDetails): str
 /** Link chat umum (tanpa paket tertentu). */
 export function getGeneralChatLink(): string {
   return buildWhatsAppLink(
-    "Halo Admin Fotonic Project! Saya ingin bertanya mengenai paket foto. Mohon infonya ya. Terima kasih 🙏",
+    "Halo Admin Fotonic Project! Saya ingin bertanya mengenai paket foto. Mohon infonya ya. Terima kasih.",
   );
 }

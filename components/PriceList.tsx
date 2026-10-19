@@ -3,12 +3,11 @@
 import { motion } from "framer-motion";
 import { CircleCheck, Sparkles, Video, HardDriveDownload } from "lucide-react";
 import { formatRupiah, MAIN_PACKAGES, PROMO_BONUS, type MainPackage } from "@/data/pricelist";
-import { useBooking } from "@/components/BookingModal";
+import { getPackageInterestLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons/SocialIcons";
 import { cn } from "@/lib/utils";
 
 export default function PriceList() {
-  const { openBooking } = useBooking();
 
   return (
     <section id="pricelist" className="relative border-t border-white/5 bg-ink-soft/40 py-20 sm:py-28">
@@ -116,14 +115,15 @@ export default function PriceList() {
                   File dikirim aman via tautan Google Drive
                 </p>
 
-                <button
-                  type="button"
-                  onClick={() => openBooking({ name: pkg.name, price: pkg.startingPrice, kind: "package" })}
+                <a
+                  href={getPackageInterestLink(pkg.name, pkg.startingPrice)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-wa mt-4 w-full"
                 >
                   <WhatsAppIcon size={18} />
-                  Pesan Paket Ini via WhatsApp
-                </button>
+                  Hubungi Admin via WhatsApp
+                </a>
               </motion.article>
             );
           })}
