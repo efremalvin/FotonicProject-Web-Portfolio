@@ -126,7 +126,10 @@ export default function CatalogSection() {
                   {active && (
                     <motion.span
                       layoutId="catalog-filter-pill"
-                      className="absolute inset-0 rounded-full bg-gold"
+                      className="absolute inset-0 rounded-full shadow-md shadow-gold/20"
+                      style={{
+                        background: "linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, #b9853a 100%)",
+                      }}
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}

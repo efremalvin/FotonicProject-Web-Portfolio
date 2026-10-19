@@ -57,6 +57,11 @@ body {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-wa px-5 py-3 text-sm font-semibold text-black transition hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wa;
   }
 
+  .btn-brand {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-ink shadow-lg shadow-gold/20 transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:shadow-gold/30 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, #b9853a 100%);
+  }
+
   /* Proteksi Media: Disable drag & save image bypass */
   img {
     -webkit-user-drag: none;

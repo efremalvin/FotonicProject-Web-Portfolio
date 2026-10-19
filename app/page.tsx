@@ -84,7 +84,7 @@ export default function HomePage() {
                 <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
                   <a
                     href="#katalog"
-                    className="btn-wa w-full sm:w-auto px-7 py-3.5 text-sm"
+                    className="btn-brand w-full sm:w-auto px-7 py-3.5 text-sm"
                   >
                     Lihat Hasil Karya &amp; Katalog
                   </a>
