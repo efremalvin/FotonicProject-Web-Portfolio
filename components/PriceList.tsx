@@ -76,7 +76,10 @@ export default function PriceList() {
                   <p className="mt-0.5 text-4xl font-extrabold tracking-tight text-white">
                     {formatRupiah(pkg.startingPrice)}
                   </p>
-                  <p className="mt-2 text-xs text-zinc-400">
+                  <p className="mt-2 text-xs font-medium text-zinc-300">
+                    {pkg.description}
+                  </p>
+                  <p className="mt-1 text-[11px] text-zinc-400">
                     {pkg.spots} · {pkg.editedPhotos}
                   </p>
                 </div>
