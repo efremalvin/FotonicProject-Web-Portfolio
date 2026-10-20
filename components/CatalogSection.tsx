@@ -26,6 +26,22 @@ import { cn } from "@/lib/utils";
 
 type FilterType = "all" | ServiceType;
 
+// Aspect ratio mapping untuk menghasilkan variasi tinggi pin masonry ala Pinterest
+function getPinAspectRatio(project: CatalogProject, idx: number): string {
+  if (project.serviceType === "video") {
+    return project.videoAspectRatio === "portrait" ? "aspect-[9/16]" : "aspect-[16/10]";
+  }
+  const ratios = [
+    "aspect-[3/4]",   // Portrait sedang
+    "aspect-[4/5]",   // Portrait klasik
+    "aspect-[4/3]",   // Landscape
+    "aspect-[2/3]",   // Portrait tinggi
+    "aspect-square",  // Persegi
+    "aspect-[3/4]",
+  ];
+  return ratios[idx % ratios.length];
+}
+
 export default function CatalogSection() {
   const [filter, setFilter] = useState<FilterType>("all");
   const [projects, setProjects] = useState<CatalogProject[]>(CATALOG_PROJECTS);
@@ -141,24 +157,24 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="katalog" className="relative border-b border-white/10 bg-gradient-to-b from-ink via-ink-card/30 to-ink py-20 sm:py-28">
+    <section id="katalog" className="relative border-b border-white/10 bg-gradient-to-b from-ink via-ink-card/30 to-ink py-16 sm:py-24">
       {/* Visual Section Separator Accent */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       <div className="pointer-events-none absolute right-1/4 top-1/3 h-44 w-44 sm:h-72 sm:w-72 rounded-full bg-gold/5 blur-[50px] sm:blur-[120px]" />
 
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <span className="eyebrow flex items-center gap-2">
               <Camera className="size-3.5 text-gold" />
-              <span>Client Showcase</span>
+              <span>Creative Showcase</span>
             </span>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Katalog Hasil Foto &amp; Video
+              Katalog Kolase Karya
             </h2>
-            <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-zinc-400">
-              Klik pada kartu proyek klien untuk melihat detail dan pratinjau galeri foto/video tanpa mengunduh.
+            <p className="mt-1.5 max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-400">
+              Eksplorasi hasil foto &amp; video sinematik bergaya kolase. Klik pada kartu karya untuk membuka galeri lengkap.
             </p>
           </div>
 
@@ -201,12 +217,16 @@ export default function CatalogSection() {
           </div>
         </div>
 
-        {/* Grid Showcase Subfolder Klien (DAPAT DIKLIK UNTUK MELIHAT DETAIL) */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {filteredProjects.map((project) => {
+        {/* ========================================================= */}
+        {/* PINTEREST MASONRY COLLAGE LAYOUT */}
+        {/* Web Mobile: 2 Kolom Masonry | Desktop: 3 - 4 Kolom Masonry */}
+        {/* ========================================================= */}
+        <div className="mt-8 sm:mt-12 columns-2 md:columns-3 lg:columns-4 gap-3.5 sm:gap-5 [column-fill:_balance]">
+          {filteredProjects.map((project, idx) => {
             const isVideo = project.serviceType === "video";
             const imageSrc = resolveImageSrc(project.thumbnail, 600);
             const photoCount = project.galleryPhotos?.length || 1;
+            const aspectClass = getPinAspectRatio(project, idx);
 
             return (
               <article
@@ -220,11 +240,11 @@ export default function CatalogSection() {
                     handleOpenProject(project);
                   }
                 }}
-                className="group relative flex cursor-pointer select-none flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-card transition-colors duration-200 sm:hover:border-gold/50 sm:hover:shadow-xl sm:hover:shadow-gold/5"
+                className="group relative mb-3.5 sm:mb-5 break-inside-avoid cursor-pointer select-none overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-ink-card shadow-lg transition-all duration-300 sm:hover:border-gold/50 sm:hover:shadow-2xl sm:hover:shadow-gold/10 sm:hover:-translate-y-1"
               >
-                {/* Thumbnail Cover dengan Proteksi Anti-Download */}
+                {/* Media Image dengan Aspect Ratio Dinamis Pinterest */}
                 <div 
-                  className="relative aspect-[4/3] w-full select-none overflow-hidden bg-zinc-900"
+                  className={cn("relative w-full overflow-hidden bg-zinc-900 select-none", aspectClass)}
                   onContextMenu={(e) => e.preventDefault()}
                 >
                   <Image
@@ -234,66 +254,89 @@ export default function CatalogSection() {
                     unoptimized
                     draggable={false}
                     referrerPolicy="no-referrer"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="pointer-events-none select-none object-cover sm:transition-transform sm:duration-700 sm:ease-out sm:group-hover:scale-105"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-card via-black/30 to-transparent" />
 
-                  {/* Badge Tipe Jasa */}
-                  <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1 rounded-full border border-white/15 bg-black/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+                  {/* Gradient Overlay Menyatu Halus */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent sm:opacity-40 sm:transition-opacity sm:duration-300 sm:group-hover:opacity-0" />
+
+                  {/* Floating Pill Kiri Atas: Badge Tipe Karya */}
+                  <span className="pointer-events-none absolute left-2.5 top-2.5 sm:left-3.5 sm:top-3.5 z-10 inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/70 px-2 sm:px-2.5 py-0.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold text-white shadow-md backdrop-blur-sm">
                     {isVideo ? (
                       <>
-                        <Film className="size-3 text-gold" /> Video
+                        <Film className="size-2.5 sm:size-3 text-gold" />
+                        <span>Reels</span>
                       </>
                     ) : (
                       <>
-                        <Camera className="size-3 text-gold" /> Foto ({photoCount})
+                        <Camera className="size-2.5 sm:size-3 text-gold" />
+                        <span>{photoCount} Foto</span>
                       </>
                     )}
                   </span>
 
-                  {/* Quick Hint Icon Overlay */}
-                  <div className="pointer-events-none absolute right-3 top-3 flex size-7 items-center justify-center rounded-full bg-black/80 text-white/90 opacity-0 transition-opacity sm:group-hover:opacity-100">
-                    {isVideo ? <Play className="size-3.5 fill-current" /> : <Images className="size-3.5" />}
-                  </div>
-                </div>
-
-                {/* Informasi Subfolder Klien */}
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-gold">
-                    <User className="size-3.5" />
-                    <span>{project.clientName}</span>
+                  {/* Floating Icon Kanan Atas: Quick Hint */}
+                  <div className="pointer-events-none absolute right-2.5 top-2.5 sm:right-3.5 sm:top-3.5 z-10 flex size-6 sm:size-8 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-md backdrop-blur-sm transition-transform duration-300 sm:group-hover:scale-110 sm:group-hover:border-gold sm:group-hover:text-gold">
+                    {isVideo ? <Play className="size-2.5 sm:size-3.5 fill-current" /> : <Images className="size-2.5 sm:size-3.5" />}
                   </div>
 
-                  <h3 className="mt-1 text-base font-semibold leading-snug text-white group-hover:text-gold">
-                    {project.eventName}
-                  </h3>
-
-                  <p className="mt-1.5 flex items-center gap-1.5 text-xs text-zinc-400">
-                    <CalendarDays className="size-3 text-zinc-500" />
-                    <span>{project.date}</span>
-                  </p>
-
-                  <p className="mt-3 flex-1 text-xs leading-relaxed text-zinc-400 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  {/* Tombol Lihat Detail Galeri (Non-nested decorative visual) */}
-                  <div className="mt-5 border-t border-white/5 pt-3.5">
-                    <div className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] py-2.5 text-xs font-semibold text-white transition group-hover:border-gold/50 group-hover:bg-gold/10 group-hover:text-gold">
+                  {/* Desktop Hover Overlay Interaktif (Pinterest Hover Card) */}
+                  <div className="pointer-events-none absolute inset-0 z-10 hidden sm:flex flex-col justify-end p-4 lg:p-5 bg-gradient-to-t from-black/95 via-black/70 to-transparent opacity-0 transition-opacity duration-300 sm:group-hover:opacity-100">
+                    <span className="text-[11px] font-semibold tracking-wider uppercase text-gold">
+                      {project.packageName || "Katalog Karya"}
+                    </span>
+                    <h3 className="text-base font-bold text-white leading-snug line-clamp-1 mt-0.5">
+                      {project.clientName}
+                    </h3>
+                    <p className="text-[11px] text-zinc-300 line-clamp-2 mt-1 leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="mt-3.5 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-gold/20 py-2 text-xs font-bold text-gold backdrop-blur-sm shadow-sm transition-colors group-hover:bg-gold group-hover:text-ink">
                       {isVideo ? (
                         <>
-                          <Play className="size-3.5 text-gold" />
-                          <span>Tonton Video &amp; Detail</span>
+                          <Play className="size-3 fill-current" />
+                          <span>Tonton Video</span>
                         </>
                       ) : (
                         <>
-                          <Images className="size-3.5 text-gold" />
-                          <span>Lihat Galeri Foto ({photoCount})</span>
+                          <Images className="size-3" />
+                          <span>Buka Galeri Foto</span>
                         </>
                       )}
                     </div>
                   </div>
+                </div>
+
+                {/* Footer Kartu Khusus Tampilan Mobile (Rapi & Kompak) */}
+                <div className="p-2.5 flex flex-col gap-1 sm:hidden bg-ink-card border-t border-white/5">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="text-xs font-bold text-white truncate">{project.clientName}</span>
+                    {project.packageName && (
+                      <span className="rounded-full bg-gold/10 px-1.5 py-0.5 text-[9px] font-medium text-gold border border-gold/20 truncate max-w-[85px]">
+                        {project.packageName}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-zinc-400 truncate">{project.date}</p>
+                </div>
+
+                {/* Footer Metadata Desktop (Pinterest Style Pin Author / Project Bar) */}
+                <div className="hidden sm:flex items-center justify-between px-4 py-3 bg-ink-card border-t border-white/5">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold text-xs font-bold border border-gold/30">
+                      {project.clientName.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-white truncate leading-tight group-hover:text-gold transition-colors">
+                        {project.clientName}
+                      </p>
+                      <p className="text-[10px] text-zinc-400 truncate leading-tight mt-0.5">
+                        {project.packageName || project.eventName}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] text-zinc-500 shrink-0 font-medium">{project.date}</span>
                 </div>
               </article>
             );
