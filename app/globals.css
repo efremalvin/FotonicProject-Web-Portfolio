@@ -82,6 +82,16 @@ body {
   }
 }
 
+/* Optimasi Kartu Kolase Pinterest agar 60 FPS di HP */
+.pin-card {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
