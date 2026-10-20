@@ -13,7 +13,7 @@ export default function PriceList() {
     <section id="pricelist" className="relative border-t border-white/5 bg-ink-soft/40 py-20 sm:py-28">
       {/* Decorative Glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-      <div className="pointer-events-none absolute right-1/4 top-1/4 h-80 w-80 rounded-full bg-gold/5 blur-[130px]" />
+      <div className="pointer-events-none absolute right-1/4 top-1/4 h-48 w-48 sm:h-80 sm:w-80 rounded-full bg-gold/5 blur-[50px] sm:blur-[130px]" />
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         {/* Section Header */}

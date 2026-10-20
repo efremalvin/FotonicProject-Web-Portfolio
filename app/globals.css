@@ -73,6 +73,15 @@ body {
   }
 }
 
+/* Optimasi Performa Mobile: Matikan backdrop blur berat di layar HP */
+@media (max-width: 640px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

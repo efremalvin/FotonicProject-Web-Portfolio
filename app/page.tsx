@@ -21,9 +21,9 @@ export default function HomePage() {
         {/* HERO SECTION */}
         {/* ========================================================= */}
         <section className="relative overflow-hidden border-b border-white/5 bg-ink py-16 sm:py-24 lg:py-28">
-          {/* Subtle Ambient Gold Glow */}
-          <div className="pointer-events-none absolute -left-20 top-1/4 h-[420px] w-[500px] rounded-full bg-gold/10 blur-[140px]" />
-          <div className="pointer-events-none absolute right-0 top-10 h-[500px] w-[600px] rounded-full bg-zinc-800/30 blur-[160px]" />
+          {/* Subtle Ambient Gold Glow (Optimized for Mobile) */}
+          <div className="pointer-events-none absolute -left-20 top-1/4 h-[200px] w-[240px] sm:h-[420px] sm:w-[500px] rounded-full bg-gold/10 blur-[50px] sm:blur-[140px]" />
+          <div className="pointer-events-none absolute right-0 top-10 h-[240px] w-[280px] sm:h-[500px] sm:w-[600px] rounded-full bg-zinc-800/30 blur-[60px] sm:blur-[160px]" />
 
           {/* Background Khusus Tampilan HP: Bergantian Kamera & Lensa (20-30% opacity) */}
           <MobileHeroBackground />

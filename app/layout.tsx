@@ -13,6 +13,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  referrer: "no-referrer",
   title: `${siteConfig.fullName} | Price List & Booking`,
   description: siteConfig.description,
   keywords: [

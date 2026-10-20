@@ -23,7 +23,7 @@ export default function MobileHeroBackground() {
       {HERO_IMAGES.map((img, i) => (
         <div
           key={img.src}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             currentIdx === i ? "opacity-35" : "opacity-0"
           }`}
         >
@@ -38,7 +38,7 @@ export default function MobileHeroBackground() {
         </div>
       ))}
       {/* Overlay Gelap Halus agar foto gear terlihat jelas namun teks & logo tetap terbaca */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/50 to-ink/90" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/50 to-ink/90" />
     </div>
   );
 }

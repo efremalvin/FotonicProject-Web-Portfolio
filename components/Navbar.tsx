@@ -5,7 +5,7 @@ import { getGeneralChatLink } from "@/lib/whatsapp";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-ink/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/5 bg-ink/95 sm:bg-ink/80 sm:backdrop-blur-xl">
       <nav className="mx-auto flex h-16 sm:h-[72px] max-w-6xl items-center justify-between px-4 sm:px-8">
         {/* Brand / Logo */}
         <a href="#top" className="group flex items-center gap-2 sm:gap-3 transition-opacity hover:opacity-90 shrink-0" aria-label="Fotonic — kembali ke atas">
