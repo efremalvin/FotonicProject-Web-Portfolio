@@ -22,6 +22,9 @@ git add .
 echo Menyimpan perubahan (commit)...
 git commit -m "%commit_msg%"
 
+echo Menyinkronkan dengan GitHub (pull rebase)...
+git pull --rebase origin main
+
 echo Mengunggah ke GitHub (push)...
 git push origin main
 
