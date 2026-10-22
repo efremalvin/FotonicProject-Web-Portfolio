@@ -5,8 +5,9 @@ export const siteConfig = {
   name: "Fotonic",
   subtitle: "Photo & Video Project",
   fullName: "Fotonic - Photo & Video Project",
+  location: "Bandar Lampung & Sekitarnya",
   description:
-    "Price list resmi Fotonic Photo & Video Project — paket foto Single, Group, Seminar & Sidang, serta add-on. Booking mudah langsung via WhatsApp.",
+    "Layanan dokumentasi foto & video untuk wisuda, seminar & sidang, portrait, dan event di area Bandar Lampung dan sekitarnya. Booking mudah langsung via WhatsApp.",
   url: "https://fotonic.vercel.app",
   /** Nomor WhatsApp admin, format internasional tanpa "+" atau spasi. */
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281994218428",

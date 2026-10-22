@@ -1,3 +1,4 @@
+import { MapPin } from "lucide-react";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons/SocialIcons";
 import { displayPhone, siteConfig } from "@/lib/site";
 import { getGeneralChatLink } from "@/lib/whatsapp";
@@ -24,6 +25,10 @@ export default function Footer() {
             </a>
             <p className="mt-2 text-sm italic text-zinc-400">
               &ldquo;Capture your moment and tell your story&rdquo;
+            </p>
+            <p className="mt-1 flex items-center gap-1.5 text-xs text-gold/90 font-medium">
+              <MapPin className="size-3 text-gold shrink-0" />
+              <span>{siteConfig.location}</span>
             </p>
           </div>
 

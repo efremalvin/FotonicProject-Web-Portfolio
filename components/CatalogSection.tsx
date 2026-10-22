@@ -177,6 +177,7 @@ export default function CatalogSection() {
       {/* Visual Section Separator Accent */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       <div className="pointer-events-none absolute right-1/4 top-1/3 h-44 w-44 sm:h-72 sm:w-72 rounded-full bg-gold/5 blur-[50px] sm:blur-[120px]" />
+      <div className="pointer-events-none absolute -left-12 top-2/3 h-52 w-52 rounded-full bg-gold/[0.04] blur-[60px]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -184,13 +185,13 @@ export default function CatalogSection() {
           <div>
             <span className="eyebrow flex items-center gap-2">
               <Camera className="size-3.5 text-gold" />
-              <span>Creative Showcase</span>
+              <span>Koleksi Foto &amp; Video</span>
             </span>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Katalog Kolase Karya
+              Galeri Karya
             </h2>
             <p className="mt-1.5 max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-400">
-              Eksplorasi hasil foto &amp; video sinematik bergaya kolase. Klik pada kartu karya untuk membuka galeri lengkap.
+              Dokumentasi setiap momen berharga dari hasil shoot klien kami. Klik pada kartu untuk membuka galeri lengkap.
             </p>
           </div>
 

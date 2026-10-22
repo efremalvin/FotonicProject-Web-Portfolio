@@ -19,7 +19,7 @@ export default function MobileHeroBackground() {
   }, []);
 
   return (
-    <div className="pointer-events-none absolute inset-0 block lg:hidden select-none overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 z-[1] block lg:hidden select-none overflow-hidden">
       {HERO_IMAGES.map((img, i) => (
         <div
           key={img.src}

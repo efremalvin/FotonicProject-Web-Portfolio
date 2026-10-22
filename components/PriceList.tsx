@@ -14,6 +14,7 @@ export default function PriceList() {
       {/* Decorative Glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       <div className="pointer-events-none absolute right-1/4 top-1/4 h-48 w-48 sm:h-80 sm:w-80 rounded-full bg-gold/5 blur-[50px] sm:blur-[130px]" />
+      <div className="pointer-events-none absolute -left-12 bottom-1/4 h-52 w-52 rounded-full bg-gold/[0.04] blur-[60px]" />
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         {/* Section Header */}
@@ -23,7 +24,7 @@ export default function PriceList() {
             Paket Dokumentasi <span className="italic text-gradient-gold">Pilihan</span>
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-            Biaya terjangkau dengan hasil berkualitas studio. Setiap paket sudah dilengkapi bonus promo video reels secara gratis!
+            Biaya terjangkau dengan kualitas hasil terbaik. Setiap paket sudah dilengkapi bonus promo video reels secara gratis!
           </p>
         </div>
 

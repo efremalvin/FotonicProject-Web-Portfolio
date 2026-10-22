@@ -30,7 +30,7 @@ export const MAIN_PACKAGES: MainPackage[] = [
     description: "Sesi foto wisuda khusus individu / portrait sarjana dengan toga lengkap dan personal branding.",
     features: [
       "Spot foto fleksibel area kampus / outdoor",
-      "Foto edit profesional resolusi tinggi",
+      "Foto edit resolusi tinggi",
       DELIVERY_NOTE,
       PROMO_BONUS,
     ],

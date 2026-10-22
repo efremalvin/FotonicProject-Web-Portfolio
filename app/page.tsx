@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, HardDriveDownload, Sparkles, Video, Camera, Aperture } from "lucide-react";
+import { ArrowDown, HardDriveDownload, Sparkles, Video, Camera, Aperture, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import CatalogSection from "@/components/CatalogSection";
 import PriceList from "@/components/PriceList";
@@ -50,6 +50,20 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <div className="pointer-events-none absolute -left-20 top-1/4 h-[200px] w-[240px] sm:h-[420px] sm:w-[500px] rounded-full bg-gold/10 blur-[50px] sm:blur-[140px]" />
           <div className="pointer-events-none absolute right-0 top-10 h-[240px] w-[280px] sm:h-[500px] sm:w-[600px] rounded-full bg-zinc-800/30 blur-[60px] sm:blur-[160px]" />
 
+          {/* Smooth Minimum Light (Ambient Lighting Halus & Sinematik Tanpa Beban GPU) */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-[2] select-none"
+            style={{
+              backgroundImage: `
+                radial-gradient(ellipse 90% 55% at 50% 0%, rgba(214, 168, 90, 0.15), transparent 70%),
+                radial-gradient(circle 360px at 50% 35%, rgba(214, 168, 90, 0.08), transparent 75%),
+                radial-gradient(circle 300px at 85% 65%, rgba(214, 168, 90, 0.06), transparent 70%),
+                radial-gradient(circle 260px at 15% 75%, rgba(240, 207, 142, 0.05), transparent 70%)
+              `,
+            }}
+          />
+
           {/* Background Khusus Tampilan HP: Bergantian Kamera & Lensa (20-30% opacity) */}
           <MobileHeroBackground />
 
@@ -86,21 +100,25 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 </h1>
 
                 <p className="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
-                  Layanan fotografi &amp; videografi profesional untuk outdoor &amp; indoor shoot — dari momen wisuda, perayaan sidang, portrait personal, hingga event kebersamaan. 
-                  Dokumentasikan momen terbaik Anda dengan gear sinematik dan promo free video reels.
+                  Layanan dokumentasi foto &amp; video untuk outdoor maupun indoor shoot di area Bandar Lampung dan sekitarnya — dari momen wisuda, perayaan sidang, portrait personal, hingga event kebersamaan. 
+                  Dokumentasikan momen terbaik Anda dengan sentuhan sinematik dan promo free video reels.
                 </p>
 
                 {/* Benefit Pills */}
-                <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm lg:justify-start">
-                  <span className="rounded-full border border-gold/50 bg-gold/15 px-4 py-2 font-bold text-gold">
+                <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm lg:justify-start">
+                  <span className="rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1.5 font-bold text-gold">
                     Mulai dari {formatRupiah(lowestPrice)}
                   </span>
-                  <span className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-zinc-300">
-                    <Video className="size-4 text-emerald-400" />
+                  <span className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 font-medium text-gold">
+                    <MapPin className="size-3.5 text-gold shrink-0" />
+                    <span>Bandar Lampung &amp; Sekitarnya</span>
+                  </span>
+                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300">
+                    <Video className="size-3.5 text-emerald-400 shrink-0" />
                     <span>Free Video Reels</span>
                   </span>
-                  <span className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-zinc-300">
-                    <HardDriveDownload className="size-4 text-gold" />
+                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300">
+                    <HardDriveDownload className="size-3.5 text-gold shrink-0" />
                     <span>All RAW &amp; JPG via Drive</span>
                   </span>
                 </div>

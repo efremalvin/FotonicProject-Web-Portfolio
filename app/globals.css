@@ -73,8 +73,18 @@ body {
   }
 }
 
-/* Optimasi Performa Mobile: Matikan backdrop blur berat di layar HP */
+/* Optimasi Performa Mobile & Smooth Ambient Light agar background HP tidak polos */
 @media (max-width: 640px) {
+  body {
+    background-color: var(--color-ink);
+    background-image: 
+      radial-gradient(circle 280px at 20% 12%, rgba(214, 168, 90, 0.055), transparent 70%),
+      radial-gradient(circle 320px at 85% 38%, rgba(214, 168, 90, 0.045), transparent 70%),
+      radial-gradient(circle 300px at 15% 68%, rgba(214, 168, 90, 0.04), transparent 70%),
+      radial-gradient(circle 350px at 85% 92%, rgba(214, 168, 90, 0.05), transparent 75%);
+    background-attachment: fixed;
+  }
+
   .backdrop-blur-xl,
   .backdrop-blur-lg {
     backdrop-filter: none !important;
