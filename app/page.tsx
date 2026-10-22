@@ -13,10 +13,26 @@ import MaintenanceView from "@/components/MaintenanceView";
 
 const lowestPrice = Math.min(...MAIN_PACKAGES.map((p) => p.startingPrice));
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+interface HomePageProps {
+  searchParams?: Promise<{ maintenance?: string }>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const resolvedParams = searchParams ? await searchParams : {};
+  const envMode = (
+    process.env.MAINTENANCE_MODE ||
+    process.env.NEXT_PUBLIC_MAINTENANCE_MODE ||
+    ""
+  )
+    .trim()
+    .toLowerCase();
+
   const isMaintenance =
-    process.env.MAINTENANCE_MODE === "true" ||
-    process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
+    envMode === "true" ||
+    envMode === "1" ||
+    resolvedParams.maintenance === "true";
 
   if (isMaintenance) {
     return <MaintenanceView />;
