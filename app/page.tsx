@@ -9,10 +9,19 @@ import { BookingProvider } from "@/components/BookingModal";
 import { MAIN_PACKAGES, formatRupiah } from "@/data/pricelist";
 
 import MobileHeroBackground from "@/components/MobileHeroBackground";
+import MaintenanceView from "@/components/MaintenanceView";
 
 const lowestPrice = Math.min(...MAIN_PACKAGES.map((p) => p.startingPrice));
 
 export default function HomePage() {
+  const isMaintenance =
+    process.env.MAINTENANCE_MODE === "true" ||
+    process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
+
+  if (isMaintenance) {
+    return <MaintenanceView />;
+  }
+
   return (
     <BookingProvider>
       <Navbar />
