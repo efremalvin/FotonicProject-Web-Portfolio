@@ -1,7 +1,7 @@
 /**
  * Price list resmi Fotonic - Photo & Video Project.
  * 3 Paket Utama (Single, Group, Sidang) dengan harga "Start From", tanpa durasi,
- * dan promo gratis Video Reels/Shorts pada masing-masing paket!
+ * dan promo gratis Video Reels/TikTok pada masing-masing paket!
  */
 
 export interface MainPackage {
@@ -16,7 +16,7 @@ export interface MainPackage {
   features: string[];
 }
 
-export const PROMO_BONUS = "FREE Video Reels / Shorts (Cinematic 15-60s)";
+export const PROMO_BONUS = "FREE Video Reels / TikTok (Cinematic 15-60s)";
 export const DELIVERY_NOTE = "All Files RAW & JPG via Google Drive";
 
 export const MAIN_PACKAGES: MainPackage[] = [

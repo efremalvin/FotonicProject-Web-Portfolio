@@ -8,7 +8,7 @@ const NOTES: { icon: LucideIcon; title: string; body: string }[] = [
   },
   {
     icon: Video,
-    title: "Spesial Promo Free Video Reels",
+    title: "Spesial Promo Free Video Reels / TikTok",
     body: "Setiap paket pemesanan sudah termasuk bonus pengambilan video sinematik vertikal (Reels/TikTok) 15-60 detik dengan efek slow-motion dan color grading.",
   },
   {

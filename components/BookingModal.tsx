@@ -139,10 +139,10 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
         <span className="text-xl font-bold text-gold">{formatRupiah(target.price)}</span>
       </div>
 
-      {/* Promo banner info */}
-      <div className="mt-3 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-300">
-        <Video className="size-4 shrink-0 text-emerald-400" />
-        <span>Termasuk Promo FREE Video Reels / Shorts Sinematik!</span>
+      {/* Promo banner info with Gold Glow */}
+      <div className="mt-3 flex items-center gap-2 rounded-xl border border-gold/50 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 px-3 py-2 text-xs font-semibold text-gold shadow-[0_0_15px_rgba(214,168,90,0.18)]">
+        <Video className="size-4 shrink-0 text-gold drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+        <span>Termasuk Promo FREE Video Reels / TikTok Sinematik!</span>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">

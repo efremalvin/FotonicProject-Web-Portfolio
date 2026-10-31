@@ -72,10 +72,21 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               
               {/* Kolom Kiri: Teks & Logo Brand (Pada HP teks & logo bergulir elegan di atas background) */}
               <div className="text-center lg:col-span-7 lg:text-left">
-                {/* Promo Badge Pill */}
-                <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-xs font-semibold text-gold shadow-sm backdrop-blur-md">
-                  <Sparkles className="size-3.5 text-gold" />
-                  <span>Promo Spesial: FREE Video Reels / Shorts!</span>
+                {/* Promo Badge Pill with Luxury Gold Glow */}
+                <div className="relative inline-flex group">
+                  {/* Ambient Glow Aura */}
+                  <div className="pointer-events-none absolute -inset-1 rounded-full bg-gradient-to-r from-gold/50 via-gold-light/40 to-gold/50 opacity-75 blur-md transition duration-500 group-hover:opacity-100 group-hover:blur-lg" />
+                  
+                  {/* Badge Body */}
+                  <div className="relative inline-flex items-center gap-2.5 rounded-full border border-gold/70 bg-ink-card/95 px-4 py-1.5 text-xs font-semibold text-gold shadow-[0_0_20px_rgba(214,168,90,0.35)] backdrop-blur-md">
+                    <Sparkles className="size-3.5 text-gold shrink-0 animate-pulse" />
+                    <span className="tracking-wide text-zinc-200">
+                      Promo Spesial:{" "}
+                      <span className="font-bold text-gradient-gold drop-shadow-[0_0_8px_rgba(214,168,90,0.5)]">
+                        FREE Video Reels / TikTok!
+                      </span>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Logo Fotonic Putih */}
@@ -101,7 +112,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
                 <p className="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
                   Layanan dokumentasi foto &amp; video untuk outdoor maupun indoor shoot di area Bandar Lampung dan sekitarnya — dari momen wisuda, perayaan sidang, portrait personal, hingga event kebersamaan. 
-                  Dokumentasikan momen terbaik Anda dengan sentuhan sinematik dan promo free video reels.
+                  Dokumentasikan momen terbaik Anda dengan sentuhan sinematik dan promo free video Reels / TikTok.
                 </p>
 
                 {/* Benefit Pills */}
@@ -113,9 +124,9 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                     <MapPin className="size-3.5 text-gold shrink-0" />
                     <span>Bandar Lampung &amp; Sekitarnya</span>
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300">
-                    <Video className="size-3.5 text-emerald-400 shrink-0" />
-                    <span>Free Video Reels</span>
+                  <span className="flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1.5 font-semibold text-gold shadow-[0_0_15px_rgba(214,168,90,0.25)]">
+                    <Video className="size-3.5 text-gold shrink-0 drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                    <span>Free Video Reels / TikTok</span>
                   </span>
                   <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300">
                     <HardDriveDownload className="size-3.5 text-gold shrink-0" />

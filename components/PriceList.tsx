@@ -24,19 +24,33 @@ export default function PriceList() {
             Paket Dokumentasi <span className="italic text-gradient-gold">Pilihan</span>
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-            Biaya terjangkau dengan kualitas hasil terbaik. Setiap paket sudah dilengkapi bonus promo video reels secara gratis!
+            Biaya terjangkau dengan kualitas hasil terbaik. Setiap paket sudah dilengkapi bonus promo video Reels / TikTok secara gratis!
           </p>
         </div>
 
-        {/* Promo Announcement Banner */}
-        <div className="mx-auto my-10 max-w-3xl overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-r from-gold/10 via-emerald-500/10 to-gold/10 p-4 text-center sm:p-5">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold sm:text-sm">
-            <Video className="size-4 text-emerald-400" />
-            <span>Spesial Promo Terbatas</span>
+        {/* Promo Announcement Banner with Striking Luxury Gold Glow */}
+        <div className="relative mx-auto my-10 max-w-3xl">
+          {/* Ambient Glow Aura */}
+          <div className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-gold/35 via-gold-light/25 to-gold/35 opacity-70 blur-xl" />
+          
+          <div className="relative overflow-hidden rounded-2xl border border-gold/50 bg-ink-card/95 p-5 text-center shadow-[0_0_35px_rgba(214,168,90,0.22)] backdrop-blur-md sm:p-6">
+            {/* Subtle radial light inside card */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(214,168,90,0.18),transparent_70%)]" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-gold shadow-[0_0_12px_rgba(214,168,90,0.3)] sm:text-xs">
+                <Sparkles className="size-3.5 text-gold animate-pulse" />
+                <span>Spesial Promo Bonus</span>
+              </div>
+              <p className="mt-2.5 text-sm leading-relaxed text-zinc-200 sm:text-base">
+                Setiap pemesanan paket apa saja mendapatkan{" "}
+                <strong className="font-extrabold text-gradient-gold drop-shadow-[0_0_10px_rgba(214,168,90,0.4)]">
+                  FREE Video Reels / TikTok Sinematik
+                </strong>{" "}
+                untuk Instagram &amp; TikTok Anda!
+              </p>
+            </div>
           </div>
-          <p className="mt-1 text-sm text-zinc-200 sm:text-base">
-            Setiap pemesanan paket apa saja mendapatkan <strong className="text-emerald-400">FREE Video Reels / Shorts Sinematik</strong> untuk Instagram &amp; TikTok Anda!
-          </p>
         </div>
 
         {/* Grid 3 Paket Utama */}
@@ -85,10 +99,10 @@ export default function PriceList() {
                   </p>
                 </div>
 
-                {/* Promo Special Tag */}
-                <div className="my-4 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-300">
-                  <Video className="size-4 shrink-0 text-emerald-400" />
-                  <span className="leading-tight">PROMO: FREE Video Reels / Shorts!</span>
+                {/* Promo Special Tag with Warm Gold Glow */}
+                <div className="my-4 flex items-center gap-2 rounded-xl border border-gold/50 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 px-3 py-2 text-xs font-bold text-gold shadow-[0_0_16px_rgba(214,168,90,0.2)]">
+                  <Video className="size-4 shrink-0 text-gold drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                  <span className="leading-tight">PROMO: FREE Video Reels / TikTok!</span>
                 </div>
 
                 {/* Fasilitas */}
@@ -100,13 +114,15 @@ export default function PriceList() {
                         key={feature}
                         className={cn(
                           "flex items-start gap-3 text-sm",
-                          isPromo ? "font-semibold text-emerald-300" : "text-zinc-300",
+                          isPromo
+                            ? "font-bold text-gold drop-shadow-[0_0_8px_rgba(214,168,90,0.35)]"
+                            : "text-zinc-300",
                         )}
                       >
                         {isPromo ? (
-                          <Sparkles className="mt-0.5 size-[18px] shrink-0 text-emerald-400" />
+                          <Sparkles className="mt-0.5 size-[18px] shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
                         ) : (
-                          <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-emerald-400" />
+                          <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-zinc-500" />
                         )}
                         <span>{feature}</span>
                       </li>
