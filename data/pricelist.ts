@@ -16,7 +16,7 @@ export interface MainPackage {
   features: string[];
 }
 
-export const PROMO_BONUS = "FREE Video Reels / TikTok (Cinematic 15-60s)";
+export const PROMO_BONUS = "FREE Video Reels / TikTok (Cinematic maks 1.30 menit) untuk setiap paket utama";
 export const DELIVERY_NOTE = "All Files RAW & JPG via Google Drive";
 
 export const MAIN_PACKAGES: MainPackage[] = [
