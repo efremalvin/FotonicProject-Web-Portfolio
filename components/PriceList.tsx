@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CircleCheck, Sparkles, Video, HardDriveDownload } from "lucide-react";
+import { CircleCheck, Video, HardDriveDownload } from "lucide-react";
 import { formatRupiah, MAIN_PACKAGES, PROMO_BONUS, type MainPackage } from "@/data/pricelist";
 import { getPackageInterestLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons/SocialIcons";
+import { MaterialStar } from "@/components/icons/MaterialSymbols";
 import { cn } from "@/lib/utils";
 
 export default function PriceList() {
@@ -33,13 +34,13 @@ export default function PriceList() {
           {/* Ambient Glow Aura */}
           <div className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-gold/35 via-gold-light/25 to-gold/35 opacity-70 blur-xl" />
           
-          <div className="relative overflow-hidden rounded-2xl border border-gold/50 bg-ink-card/95 p-5 text-center shadow-[0_0_35px_rgba(214,168,90,0.22)] backdrop-blur-md sm:p-6">
+          <div className="relative overflow-hidden rounded-4xl border border-gold/100 bg-ink-card/95 p-5 text-center shadow-[0_0_35px_rgba(214,168,90,0.22)]">
             {/* Subtle radial light inside card */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(214,168,90,0.18),transparent_70%)]" />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-gold shadow-[0_0_12px_rgba(214,168,90,0.3)] sm:text-xs">
-                <Sparkles className="size-3.5 text-gold animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-gold shadow-[0_0_12px_rgba(214,168,90,0.3)] sm:text-xs">
+                <MaterialStar className="-my-0.5 size-[18px] sm:size-5 shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.45)]" />
                 <span>Spesial Promo Bonus</span>
               </div>
               <p className="mt-2.5 text-sm leading-relaxed text-zinc-200 sm:text-base">
@@ -120,7 +121,7 @@ export default function PriceList() {
                         )}
                       >
                         {isPromo ? (
-                          <Sparkles className="mt-0.5 size-[18px] shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                          <MaterialStar className="-mx-0.5 -mt-px size-[22px] shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
                         ) : (
                           <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-zinc-500" />
                         )}

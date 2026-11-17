@@ -7,6 +7,7 @@ import Notes from "@/components/Notes";
 import Footer from "@/components/Footer";
 import { BookingProvider } from "@/components/BookingModal";
 import { MAIN_PACKAGES, formatRupiah } from "@/data/pricelist";
+import { MaterialStar } from "@/components/icons/MaterialSymbols";
 
 import MobileHeroBackground from "@/components/MobileHeroBackground";
 import MaintenanceView from "@/components/MaintenanceView";
@@ -75,11 +76,11 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 {/* Promo Badge Pill with Luxury Gold Glow */}
                 <div className="relative inline-flex group">
                   {/* Ambient Glow Aura */}
-                  <div className="pointer-events-none absolute -inset-1 rounded-full bg-gradient-to-r from-gold/50 via-gold-light/40 to-gold/50 opacity-75 blur-md transition duration-500 group-hover:opacity-100 group-hover:blur-lg" />
+                  <div className="pointer-events-none absolute -inset-1 rounded-full bg-gradient-to-r from-gold/50 via-gold-light/40 to-gold/50 opacity-75 blur-md transition duration-100 group-hover:opacity-100 group-hover:blur-lg" />
                   
                   {/* Badge Body */}
-                  <div className="relative inline-flex items-center gap-2.5 rounded-full border border-gold/70 bg-ink-card/95 px-4 py-1.5 text-xs font-semibold text-gold shadow-[0_0_20px_rgba(214,168,90,0.35)] backdrop-blur-md">
-                    <Sparkles className="size-3.5 text-gold shrink-0 animate-pulse" />
+                  <div className="relative inline-flex items-center gap-1.5 rounded-full border border-gold/70 bg-ink-card/95 px-4 py-2 text-xs font-semibold text-gold shadow-[0_0_20px_rgba(214,168,90,0.35)] backdrop-blur-md">
+                    <MaterialStar className="-my-0.5 size-[25px] sm:size-5 shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.45)]" />
                     <span className="tracking-wide text-zinc-200">
                       Promo Spesial:{" "}
                       <span className="font-bold text-gradient-gold drop-shadow-[0_0_8px_rgba(214,168,90,0.5)]">
@@ -110,7 +111,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   <span className="italic text-gradient-gold">Crafting Visual Stories</span>
                 </h1>
 
-                <p className="mt-4 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+                <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
                   Layanan dokumentasi foto &amp; video untuk outdoor maupun indoor shoot di area Bandar Lampung dan sekitarnya — dari momen wisuda, perayaan sidang, portrait personal, hingga event kebersamaan. 
                   Dokumentasikan momen terbaik Anda dengan sentuhan sinematik dan promo free video Reels / TikTok.
                 </p>
@@ -120,7 +121,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   <span className="rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1.5 font-bold text-gold">
                     Mulai dari {formatRupiah(lowestPrice)}
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 font-medium text-gold">
+                  <span className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 font-medium text-gold bg-ink-card/70">
                     <MapPin className="size-3.5 text-gold shrink-0" />
                     <span>Bandar Lampung &amp; Sekitarnya</span>
                   </span>
@@ -128,7 +129,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                     <Video className="size-3.5 text-gold shrink-0 drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
                     <span>Free Video Reels / TikTok</span>
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-zinc-300">
+                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-ink-card/70 px-3.5 py-1.5 text-zinc-300">
                     <HardDriveDownload className="size-3.5 text-gold shrink-0" />
                     <span>All RAW &amp; JPG via Drive</span>
                   </span>

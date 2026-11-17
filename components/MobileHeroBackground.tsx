@@ -24,7 +24,7 @@ export default function MobileHeroBackground() {
         <div
           key={img.src}
           className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            currentIdx === i ? "opacity-35" : "opacity-0"
+            currentIdx === i ? "opacity-50" : "opacity-0"
           }`}
         >
           <Image

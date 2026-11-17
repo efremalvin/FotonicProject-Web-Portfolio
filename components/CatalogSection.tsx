@@ -10,12 +10,12 @@ import {
   Play,
   User,
   X,
-  Sparkles,
   Images,
   ChevronLeft,
   ChevronRight,
   ShieldAlert,
 } from "lucide-react";
+import { MaterialPermMedia } from "@/components/icons/MaterialSymbols";
 import {
   CATALOG_PROJECTS,
   type CatalogProject,
@@ -184,7 +184,7 @@ export default function CatalogSection() {
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <span className="eyebrow flex items-center gap-2">
-              <Camera className="size-3.5 text-gold" />
+              <MaterialPermMedia className="-my-0.5 size-4 shrink-0 text-gold" />
               <span>Koleksi Foto &amp; Video</span>
             </span>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -196,10 +196,10 @@ export default function CatalogSection() {
           </div>
 
           {/* Filter Tipe Jasa: Semua / Foto / Video */}
-          <div className="flex rounded-full border border-white/10 bg-ink-card/90 sm:bg-white/[0.03] p-1 sm:backdrop-blur-md">
+          <div className="flex max-w-full rounded-full border border-white/10 bg-ink-card/90 sm:bg-white/[0.03] p-1 sm:backdrop-blur-md">
             {(
               [
-                { id: "all", label: "Semua Karya", icon: Sparkles },
+                { id: "all", label: "Semua Karya", icon: MaterialPermMedia },
                 { id: "foto", label: "Foto", icon: Camera },
                 { id: "video", label: "Video", icon: Film },
               ] as const
@@ -212,7 +212,7 @@ export default function CatalogSection() {
                   type="button"
                   onClick={() => setFilter(t.id)}
                   className={cn(
-                    "relative flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm",
+                    "relative flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm",
                     active ? "text-ink" : "text-zinc-400 hover:text-white",
                   )}
                 >
@@ -226,7 +226,12 @@ export default function CatalogSection() {
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
-                  <Icon className="relative size-3.5 shrink-0" />
+                  <Icon
+                    className={cn(
+                      "relative shrink-0",
+                      t.id === "all" ? "-my-0.5 size-4" : "size-3.5",
+                    )}
+                  />
                   <span className="relative font-medium">{t.label}</span>
                 </button>
               );

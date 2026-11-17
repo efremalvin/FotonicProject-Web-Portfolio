@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CalendarDays, MessageCircle, Sparkles, User, Video, X } from "lucide-react";
+import { CalendarDays, MessageCircle, User, Video, X } from "lucide-react";
 import { formatRupiah } from "@/data/pricelist";
 import { buildBookingMessage, buildWhatsAppLink, type BookingItem } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons/SocialIcons";

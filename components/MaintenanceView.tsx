@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { getGeneralChatLink } from "@/lib/whatsapp";
 import { WhatsAppIcon, InstagramIcon } from "@/components/icons/SocialIcons";
+import { MaterialStar } from "@/components/icons/MaterialSymbols";
 
 export default function MaintenanceView() {
   return (
@@ -71,8 +71,8 @@ export default function MaintenanceView() {
         </p>
 
         {/* Info Note: Layanan Tetap Buka */}
-        <div className="mx-auto my-6 flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-xs text-zinc-300 sm:max-w-md">
-          <Sparkles className="size-4 shrink-0 text-gold" />
+        <div className="mx-auto my-6 flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-xs text-zinc-300 sm:max-w-md">
+          <MaterialStar className="-my-0.5 size-5 shrink-0 text-gold drop-shadow-[0_0_6px_rgba(214,168,90,0.45)]" />
           <span>Layanan fotografi &amp; reservasi jadwal photoshoot tetap buka seperti biasa!</span>
         </div>
 
