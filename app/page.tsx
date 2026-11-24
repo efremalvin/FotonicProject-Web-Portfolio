@@ -79,11 +79,11 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                   <div className="pointer-events-none absolute -inset-1 rounded-full bg-gradient-to-r from-gold/50 via-gold-light/40 to-gold/50 opacity-75 blur-md transition duration-100 group-hover:opacity-100 group-hover:blur-lg" />
                   
                   {/* Badge Body */}
-                  <div className="relative inline-flex items-center gap-1.5 rounded-full border border-gold/70 bg-ink-card/95 px-4 py-2 text-xs font-semibold text-gold shadow-[0_0_20px_rgba(214,168,90,0.35)] backdrop-blur-md">
-                    <MaterialStar className="-my-0.5 size-[25px] sm:size-5 shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.45)]" />
+                  <div className="relative inline-flex items-center gap-1.5 rounded-full border border-gold/70 bg-ink-card/95 px-4 py-2 text-xs font-semibold text-gold glow-gold-sm backdrop-blur-md">
+                    <MaterialStar className="-my-0.5 size-[25px] sm:size-5 shrink-0 text-gold motion-safe:animate-pulse icon-glow" />
                     <span className="tracking-wide text-zinc-200">
                       Promo Spesial:{" "}
-                      <span className="font-bold text-gradient-gold drop-shadow-[0_0_8px_rgba(214,168,90,0.5)]">
+                      <span className="font-bold text-gradient-gold text-glow">
                         FREE Video Reels / TikTok!
                       </span>
                     </span>
@@ -118,18 +118,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
                 {/* Benefit Pills */}
                 <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm lg:justify-start">
-                  <span className="rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1.5 font-bold text-gold">
+                  <span className="pill-gold font-bold">
                     Mulai dari {formatRupiah(lowestPrice)}
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 font-medium text-gold bg-ink-card/70">
+                  <span className="pill-gold bg-ink-card/70 font-medium">
                     <MapPin className="size-3.5 text-gold shrink-0" />
                     <span>Bandar Lampung &amp; Sekitarnya</span>
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/15 px-3.5 py-1.5 font-semibold text-gold shadow-[0_0_15px_rgba(214,168,90,0.25)]">
-                    <Video className="size-3.5 text-gold shrink-0 drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                  <span className="pill-gold glow-gold-sm">
+                    <Video className="size-3.5 text-gold shrink-0 icon-glow" />
                     <span>Free Video Reels / TikTok</span>
                   </span>
-                  <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-ink-card/70 px-3.5 py-1.5 text-zinc-300">
+                  <span className="pill-neutral">
                     <HardDriveDownload className="size-3.5 text-gold shrink-0" />
                     <span>All RAW &amp; JPG via Drive</span>
                   </span>

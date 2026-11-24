@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { CircleCheck, Video, HardDriveDownload } from "lucide-react";
 import { formatRupiah, MAIN_PACKAGES, PROMO_BONUS, type MainPackage } from "@/data/pricelist";
 import { getPackageInterestLink } from "@/lib/whatsapp";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export default function PriceList() {
 
   return (
+    <MotionConfig reducedMotion="user">
     <section id="pricelist" className="relative border-t border-white/5 bg-ink-soft/40 py-20 sm:py-28">
       {/* Decorative Glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
@@ -34,18 +35,18 @@ export default function PriceList() {
           {/* Ambient Glow Aura */}
           <div className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-gold/35 via-gold-light/25 to-gold/35 opacity-70 blur-xl" />
           
-          <div className="relative overflow-hidden rounded-4xl border border-gold/100 bg-ink-card/95 p-5 text-center shadow-[0_0_35px_rgba(214,168,90,0.22)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-gold bg-ink-card/95 p-5 text-center glow-gold">
             {/* Subtle radial light inside card */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(214,168,90,0.18),transparent_70%)]" />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-gold shadow-[0_0_12px_rgba(214,168,90,0.3)] sm:text-xs">
-                <MaterialStar className="-my-0.5 size-[18px] sm:size-5 shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.45)]" />
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-gold/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-gold glow-gold-xs sm:text-xs">
+                <MaterialStar className="-my-0.5 size-[18px] sm:size-5 shrink-0 text-gold motion-safe:animate-pulse icon-glow" />
                 <span>Spesial Promo Bonus</span>
               </div>
               <p className="mt-2.5 text-sm leading-relaxed text-zinc-200 sm:text-base">
                 Setiap pemesanan paket apa saja mendapatkan{" "}
-                <strong className="font-extrabold text-gradient-gold drop-shadow-[0_0_10px_rgba(214,168,90,0.4)]">
+                <strong className="font-extrabold text-gradient-gold text-glow">
                   FREE Video Reels / TikTok Sinematik
                 </strong>{" "}
                 untuk Instagram &amp; TikTok Anda!
@@ -101,8 +102,8 @@ export default function PriceList() {
                 </div>
 
                 {/* Promo Special Tag with Warm Gold Glow */}
-                <div className="my-4 flex items-center gap-2 rounded-xl border border-gold/50 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 px-3 py-2 text-xs font-bold text-gold shadow-[0_0_16px_rgba(214,168,90,0.2)]">
-                  <Video className="size-4 shrink-0 text-gold drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                <div className="promo-chip my-4">
+                  <Video className="size-4 shrink-0 text-gold icon-glow" />
                   <span className="leading-tight">PROMO: FREE Video Reels / TikTok!</span>
                 </div>
 
@@ -116,12 +117,12 @@ export default function PriceList() {
                         className={cn(
                           "flex items-start gap-3 text-sm",
                           isPromo
-                            ? "font-bold text-gold drop-shadow-[0_0_8px_rgba(214,168,90,0.35)]"
+                            ? "font-bold text-gold text-glow"
                             : "text-zinc-300",
                         )}
                       >
                         {isPromo ? (
-                          <MaterialStar className="-mx-0.5 -mt-px size-[22px] shrink-0 text-gold animate-pulse drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+                          <MaterialStar className="-mx-0.5 -mt-px size-[22px] shrink-0 text-gold motion-safe:animate-pulse icon-glow" />
                         ) : (
                           <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-zinc-500" />
                         )}
@@ -151,5 +152,6 @@ export default function PriceList() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { CalendarDays, MessageCircle, User, Video, X } from "lucide-react";
 import { formatRupiah } from "@/data/pricelist";
 import { buildBookingMessage, buildWhatsAppLink, type BookingItem } from "@/lib/whatsapp";
@@ -35,12 +35,15 @@ export function useBooking() {
 export function BookingProvider({ children }: { children: ReactNode }) {
   const [target, setTarget] = useState<BookingTarget | null>(null);
   const openBooking = useCallback((t: BookingTarget) => setTarget(t), []);
+  const closeBooking = useCallback(() => setTarget(null), []);
   const value = useMemo(() => ({ openBooking }), [openBooking]);
 
   return (
     <BookingContext.Provider value={value}>
       {children}
-      <BookingModal target={target} onClose={() => setTarget(null)} />
+      <MotionConfig reducedMotion="user">
+        <BookingModal target={target} onClose={closeBooking} />
+      </MotionConfig>
     </BookingContext.Provider>
   );
 }
@@ -121,6 +124,7 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
   return (
     <>
       <button
+        type="button"
         onClick={onClose}
         aria-label="Tutup"
         className="absolute right-4 top-4 rounded-full p-2 text-zinc-400 transition hover:bg-white/10 hover:text-white"
@@ -140,8 +144,8 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
       </div>
 
       {/* Promo banner info with Gold Glow */}
-      <div className="mt-3 flex items-center gap-2 rounded-xl border border-gold/50 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/15 px-3 py-2 text-xs font-semibold text-gold shadow-[0_0_15px_rgba(214,168,90,0.18)]">
-        <Video className="size-4 shrink-0 text-gold drop-shadow-[0_0_6px_rgba(214,168,90,0.6)]" />
+      <div className="promo-chip mt-3">
+        <Video className="size-4 shrink-0 text-gold icon-glow" />
         <span>Termasuk Promo FREE Video Reels / TikTok Sinematik!</span>
       </div>
 
@@ -156,6 +160,7 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
             onChange={(e) => setCustomerName(e.target.value)}
             placeholder="Nama Anda"
             autoComplete="name"
+            autoFocus
             className="input-field"
           />
         </label>
@@ -169,7 +174,7 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
             min={todayISO()}
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="input-field [color-scheme:dark]"
+            className="input-field"
           />
         </label>
 
@@ -179,7 +184,7 @@ function BookingForm({ target, onClose }: { target: BookingTarget; onClose: () =
         <button
           type="button"
           onClick={() => redirect(false)}
-          className="w-full text-center text-xs text-zinc-500 underline-offset-4 transition hover:text-zinc-300 hover:underline"
+          className="w-full text-center text-xs text-zinc-400 underline-offset-4 transition hover:text-zinc-300 hover:underline"
         >
           Lewati form, langsung chat admin
         </button>
