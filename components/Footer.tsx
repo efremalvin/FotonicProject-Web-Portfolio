@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-12 border-t border-white/5 pt-6 text-center text-xs text-zinc-600">
+        <p className="mt-12 border-t border-white/5 pt-6 text-center text-xs text-zinc-500">
           © {year} Fotonic Project. All rights reserved.
         </p>
       </div>
